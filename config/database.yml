@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: kitty_connection_production
-  username: kitty_connection
-  password: <%= ENV["KITTY_CONNECTION_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
