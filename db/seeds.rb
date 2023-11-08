@@ -115,5 +115,5 @@ puts 'Seeding Applications 📋'
   )
 end
 
-puts 'Done Seeding Application ✅'
+puts 'Done Seeding Applications ✅'
 puts '_______________'
