@@ -21,6 +21,9 @@ gem "active_model_serializers", "~> 0.10.14"
 # Use Active Model has_secure_password
 gem "bcrypt", "~> 3.1"
 
+# Use data generation for seed file
+gem 'faker'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
