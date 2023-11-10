@@ -5,16 +5,16 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # route to test cookie configuration
-  get '/hello', to: 'application#hello_world'
+  get "/hello", to: "application#hello_world"
 
   # User and session routes
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
 
   # Cat routes
   resources :cats, only: [:index]
 
-  get '*path', to: 'fallback#index', constraints: ->(req) { !req.xhr? && req.format.html? }
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
