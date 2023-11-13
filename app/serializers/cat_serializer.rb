@@ -1,6 +1,5 @@
 class CatSerializer < ActiveModel::Serializer
-  attributes :id, :name, :age, :sex, :shelter
+  attributes :id, :name, :age, :sex
 
-  has_many :applications
-  has_many :users
+  belongs_to :shelter
 end
