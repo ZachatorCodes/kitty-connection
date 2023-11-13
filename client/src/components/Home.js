@@ -1,11 +1,13 @@
 import React from "react";
 
-function Home() {
+function Home({ cats }) {
   return (
     <div className="home">
-      <h1>Home Component</h1>
+      <div className="welcome">
+        <h1>Welcome to Kitty Connection</h1>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Home;
