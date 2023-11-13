@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "../context/user";
+import Home from "./Home";
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -19,8 +20,7 @@ function App() {
     <div className="App">
       <UserProvider>
         <Routes>
-          <Route path="/testing" element={<h1>Test Route</h1>} />
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<Home cats={cats}/>} />
         </Routes>
       </UserProvider>
     </div>
