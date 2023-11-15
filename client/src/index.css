@@ -5,6 +5,7 @@ html {
 .login-container {
   display: inline-block;
   width: 80vw;
+  max-width: 600px;
   margin-top: 5vh;
   padding: 10px;
 }
