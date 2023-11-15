@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Alert, Button, Card } from "@mui/material";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Login() {
   const navigate = useNavigate();
@@ -47,9 +48,11 @@ function Login() {
   }
 
   return (
-    <div className="login" align="center">
+    <div className="login">
+      <Navbar />
+      <div align="center">
       <Card className="login-container">
-        <Typography variant="h4">Log In</Typography>
+        <Typography variant="h3" className="login-title">Login</Typography>
         <Box component="form" onSubmit={handleSubmit}>
           <TextField
             required
@@ -58,27 +61,29 @@ function Login() {
             label="Username"
             value={userInfo.username}
             onChange={handleChange}
-            sx={{ margin: "10px" }}
+            sx={{ margin: "5px" }}
           ></TextField>
           <br />
           <TextField
             required
             variant="filled"
             name="password"
+            type="password"
             label="Password"
             value={userInfo.password}
             onChange={handleChange}
-            sx={{ margin: "10px" }}
+            sx={{ margin: "5px" }}
           ></TextField>
           <br />
-          <Button type="submit">Log In</Button>
+          <Button type="submit" className="login-button" variant="contained">Log In</Button>
         </Box>
         {errors ? (
-          <Alert severity="error" variant="filled">
+          <Alert severity="error" variant="filled" className="login-alert">
             {errors}
           </Alert>
         ) : null}
       </Card>
+      </div>
     </div>
   );
 }
