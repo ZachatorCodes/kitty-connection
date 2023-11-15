@@ -4,5 +4,51 @@ html {
 
 .login-container {
   display: inline-block;
-  width: 75vw;
+  width: 80vw;
+  margin-top: 5vh;
+  padding: 10px;
+}
+
+.login-alert {
+  margin: 20px;
+}
+
+.login-title {
+  padding: 0;
+}
+
+.navbar-button {
+  background-color: #e1ecf4;
+  border-radius: 3px;
+  border: 1px solid #7aa7c7;
+  box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+  box-sizing: border-box;
+  color: #39739d;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.15385;
+  margin: 5px;
+  outline: none;
+  padding: 8px .8em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+.navbar-button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
 }
