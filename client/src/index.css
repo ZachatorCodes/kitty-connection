@@ -2,7 +2,7 @@ html {
   background-color: #A0BED3;
 }
 
-.login-form {
+.login-container {
   display: inline-block;
   width: 75vw;
 }
