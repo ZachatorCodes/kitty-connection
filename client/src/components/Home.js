@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import Navbar from "./Navbar";
+import { Card, Paper } from "@mui/material";
+import Cats from "./Cats";
 
 function Home({ cats }) {
   const { user } = useContext(UserContext);
@@ -9,7 +11,10 @@ function Home({ cats }) {
       <div className="home">
         <Navbar />
         <div className="welcome">
-          <h1>Welcome to Kitty Connection, {user.first_name}</h1>
+          <Paper>
+            <h1>Welcome to Kitty Connection, {user.first_name}</h1>
+          </Paper>
+          <Cats cats={cats}/>
         </div>
       </div>
     );
@@ -23,7 +28,6 @@ function Home({ cats }) {
       </div>
     );
   }
-  
 }
 
 export default Home;
