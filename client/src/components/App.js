@@ -17,12 +17,17 @@ function App() {
       });
   }, []);
 
+  function handleDeleteCat(deletedCat) {
+    const updatedCats = cats.filter((cat) => cat.id !== deletedCat.id);
+    setCats(updatedCats);
+  }
+
   return (
     <div className="app">
       <UserProvider>
         <Routes>
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/" element={<Home cats={cats}/>} />
+          <Route exact path="/" element={<Home cats={cats} onDeleteCat={handleDeleteCat}/>} />
         </Routes>
       </UserProvider>
     </div>
