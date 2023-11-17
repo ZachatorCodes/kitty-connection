@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { DeleteOutlined, Favorite, FavoriteRounded } from "@mui/icons-material";
 import {
+  Button,
   Card,
   CardActionArea,
   CardActions,
@@ -14,7 +15,7 @@ import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
 function BuildCat({ cat, onDeleteCat }) {
-  const { user } = useContext(UserContext);
+  const { loggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
   function handleDelete() {
@@ -29,43 +30,22 @@ function BuildCat({ cat, onDeleteCat }) {
   }
 
   function redirectToCat() {
-    console.log("CAT ID: ", cat.id)
-    navigate(`/cats/${cat.id}`)
-  }
-
-  function LoggedInHeader() {
-    return (
-      <CardHeader
-        action={
-          <IconButton onClick={handleDelete}>
-            <DeleteOutlined />
-          </IconButton>
-        }
-        title={cat.name}
-        subheader={cat.shelter.name}
-      />
-    );
-  }
-
-  function LoggedOutHeader() {
-    return <CardHeader title={cat.name} subheader={cat.shelter.name} />;
+    console.log("CAT ID: ", cat.id);
+    navigate(`/cats/${cat.id}`);
   }
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card className="cat-card" elevation={5}>
-        <CardActionArea onClick={redirectToCat}>
-          {user ? <LoggedInHeader /> : <LoggedOutHeader />}
-          <CardContent>
-            <Typography>Age: {cat.age}</Typography>
-            <Typography>Sex: {cat.sex === 1 ? "Male" : "Female"}</Typography>
-          </CardContent>
-          {/* <CardActions>
-          <IconButton>
-            <FavoriteRounded />
-          </IconButton>
-        </CardActions> */}
-        </CardActionArea>
+        <CardHeader title={cat.name} subheader={cat.shelter.name} />
+        <CardContent>
+          <Typography>Age: {cat.age}</Typography>
+          <Typography>Sex: {cat.sex === 1 ? "Male" : "Female"}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={redirectToCat}>View More</Button>
+          {loggedIn ? <Button onClick={handleDelete}>Delete</Button> : null}
+        </CardActions>
       </Card>
     </Grid>
   );
