@@ -1,7 +1,8 @@
 import React from "react";
-import { DeleteOutlined } from "@mui/icons-material";
+import { DeleteOutlined, Favorite } from "@mui/icons-material";
 import {
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Grid,
@@ -9,11 +10,18 @@ import {
   Typography,
 } from "@mui/material";
 
-function BuildCat({ cat }) {
+function BuildCat({ cat, onDeleteCat }) {
   function handleClick() {
     console.log(`${cat.name} was clicked!`);
+    fetch(`/cats/${cat.id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        onDeleteCat(cat);
+      }
+    });
   }
-  
+
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card className="cat-card">
@@ -30,6 +38,11 @@ function BuildCat({ cat }) {
           <Typography>Age: {cat.age}</Typography>
           <Typography>Sex: {cat.sex === 1 ? "Male" : "Female"}</Typography>
         </CardContent>
+        <CardActions>
+          <IconButton>
+            <Favorite />
+          </IconButton>
+        </CardActions>
       </Card>
     </Grid>
   );
