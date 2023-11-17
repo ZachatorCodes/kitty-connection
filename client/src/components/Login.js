@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Alert, Button, Card } from "@mui/material";
+import { Alert, Button, Card, Paper } from "@mui/material";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -42,7 +42,7 @@ function Login() {
           login(user);
           navigate("/");
         } else {
-          setErrors(user.error)
+          setErrors(user.error);
         }
       });
   }
@@ -51,38 +51,44 @@ function Login() {
     <div className="login">
       <Navbar />
       <div align="center">
-      <Card className="login-container">
-        <Typography variant="h3" className="login-title">Login</Typography>
-        <Box component="form" onSubmit={handleSubmit}>
-          <TextField
-            required
-            variant="filled"
-            name="username"
-            label="Username"
-            value={userInfo.username}
-            onChange={handleChange}
-            sx={{ margin: "5px" }}
-          ></TextField>
-          <br />
-          <TextField
-            required
-            variant="filled"
-            name="password"
-            type="password"
-            label="Password"
-            value={userInfo.password}
-            onChange={handleChange}
-            sx={{ margin: "5px" }}
-          ></TextField>
-          <br />
-          <Button type="submit" className="login-button" variant="contained">Log In</Button>
-        </Box>
-        {errors ? (
-          <Alert severity="error" variant="filled" className="login-alert">
-            {errors}
-          </Alert>
-        ) : null}
-      </Card>
+        <Paper className="login-container">
+          <Typography variant="h3" className="login-title">
+            Login
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit}>
+            <TextField
+              required
+              variant="filled"
+              name="username"
+              label="Username"
+              autoComplete="username"
+              value={userInfo.username}
+              onChange={handleChange}
+              sx={{ margin: "5px" }}
+            ></TextField>
+            <br />
+            <TextField
+              required
+              variant="filled"
+              name="password"
+              type="password"
+              label="Password"
+              autoComplete="current-password"
+              value={userInfo.password}
+              onChange={handleChange}
+              sx={{ margin: "5px" }}
+            ></TextField>
+            <br />
+            <Button type="submit" className="login-button" variant="contained">
+              Log In
+            </Button>
+          </Box>
+          {errors ? (
+            <Alert severity="error" variant="filled" className="login-alert">
+              {errors}
+            </Alert>
+          ) : null}
+        </Paper>
       </div>
     </div>
   );
