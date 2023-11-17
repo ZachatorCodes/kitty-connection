@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { Card, Paper } from "@mui/material";
 import Cats from "./Cats";
 
-function Home({ cats }) {
+function Home({ cats, onDeleteCat }) {
   const { user } = useContext(UserContext);
   if (user) {
     return (
@@ -14,7 +14,7 @@ function Home({ cats }) {
           <Paper>
             <h1>Welcome to Kitty Connection, {user.first_name}</h1>
           </Paper>
-          <Cats cats={cats}/>
+          <Cats cats={cats} onDeleteCat={onDeleteCat}/>
         </div>
       </div>
     );
