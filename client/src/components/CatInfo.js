@@ -6,7 +6,9 @@ import { Card, CardHeader, Container, Paper, Typography } from "@mui/material";
 function CatInfo({ cats }) {
   const { id: catID } = useParams();
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
+  
   console.log(selectedCat);
+
   if (selectedCat) {
     return (
       <div className="cat-info">
