@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { Box, TextField } from "@mui/material";
+import CatUpdateForm from "./CatUpdateForm";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -68,6 +69,7 @@ function CatInfo({ cats }) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
                 <Typography>Hello!</Typography>
+                <CatUpdateForm cat={selectedCat}/>
               </CardContent>
             </Collapse>
           </Card>
