@@ -1,14 +1,35 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Container, FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 
-function CatUpdateForm({ cat }) {
+function CatUpdateForm({ cat, onUpdateCat, expanded, setExpanded }) {
   const [catObj, setCatObj] = useState({
     name: cat.name,
     age: cat.age,
     sex: cat.sex,
   });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch(`/cats/${cat.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(catObj),
+    })
+      .then((r) => r.json())
+      .then((cat) => {
+        console.log(cat);
+        onUpdateCat(cat);
+        setExpanded(!expanded);
+      });
+  }
 
   function handleChange(e) {
     const name = e.target.name;
@@ -21,7 +42,7 @@ function CatUpdateForm({ cat }) {
   }
 
   return (
-    <Container>
+    <div align="center">
       <Box component="form" onSubmit={handleSubmit}>
         <TextField
           required
@@ -55,8 +76,11 @@ function CatUpdateForm({ cat }) {
             <FormControlLabel value={2} control={<Radio />} label="Female" />
           </Container>
         </RadioGroup>
+        <Button type="submit" className="update-button" variant="contained">
+          Update Cat
+        </Button>
       </Box>
-    </Container>
+    </div>
   );
 }
 
