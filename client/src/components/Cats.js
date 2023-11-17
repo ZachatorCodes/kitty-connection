@@ -6,8 +6,8 @@ function Cats({ cats, onDeleteCat }) {
   return (
     <div className="cats">
       <Grid container spacing={1}>
-        {cats.map((cat) => (
-          <BuildCat cat={cat} onDeleteCat={onDeleteCat}/>
+        {cats.map((cat, index) => (
+          <BuildCat cat={cat} onDeleteCat={onDeleteCat} key={index}/>
         ))}
       </Grid>
     </div>
