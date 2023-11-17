@@ -11,20 +11,9 @@ import {
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
-function BuildCat({ cat, onDeleteCat }) {
+function BuildCat({ cat }) {
   const { loggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-
-  function handleDelete() {
-    console.log(`${cat.name} was clicked!`);
-    fetch(`/cats/${cat.id}`, {
-      method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        onDeleteCat(cat);
-      }
-    });
-  }
 
   function redirectToCat() {
     console.log("CAT ID: ", cat.id);
@@ -41,7 +30,7 @@ function BuildCat({ cat, onDeleteCat }) {
         </CardContent>
         <CardActions>
           <Button onClick={redirectToCat}>View More</Button>
-          {loggedIn ? <Button onClick={handleDelete}>Delete</Button> : null}
+          {/* {loggedIn ? <Button onClick={handleDelete}>Delete</Button> : null} */}
         </CardActions>
       </Card>
     </Grid>

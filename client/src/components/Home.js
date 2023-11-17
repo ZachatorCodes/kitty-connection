@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { Container, Paper, Typography } from "@mui/material";
 import Cats from "./Cats";
 
-function Home({ cats, onDeleteCat }) {
+function Home({ cats }) {
   const { user } = useContext(UserContext);
   if (user) {
     return (
@@ -16,7 +16,7 @@ function Home({ cats, onDeleteCat }) {
               <Typography padding="3px" margin="24px" align="center" variant="h3">Welcome to Kitty Connection, {user.first_name}</Typography>
             </Paper>
           </Container>
-          <Cats cats={cats} onDeleteCat={onDeleteCat} />
+          <Cats cats={cats} />
         </div>
       </div>
     );

@@ -39,13 +39,13 @@ function App() {
     <div className="app">
       <UserProvider>
         <Routes>
-          <Route exact path="/cats/:id" element={<CatInfo cats={cats} onUpdateCat={handleUpdateCat}/>} />
+          <Route exact path="/cats/:id" element={<CatInfo cats={cats} onUpdateCat={handleUpdateCat} onDeleteCat={handleDeleteCat}/>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route
             exact
             path="/"
-            element={<Home cats={cats} onDeleteCat={handleDeleteCat} />}
+            element={<Home cats={cats} />}
           />
         </Routes>
       </UserProvider>
