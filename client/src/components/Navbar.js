@@ -12,7 +12,6 @@ function Navbar() {
       headers: { "Content-Type": "application/json" },
     }).then(() => {
       logout();
-      navigate("/");
     });
   }
 
