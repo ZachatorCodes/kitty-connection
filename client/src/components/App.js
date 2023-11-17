@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "../context/user";
 import Home from "./Home";
 import Login from "./Login";
+import Signup from "./Signup";
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -27,6 +28,7 @@ function App() {
       <UserProvider>
         <Routes>
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/" element={<Home cats={cats} onDeleteCat={handleDeleteCat}/>} />
         </Routes>
       </UserProvider>
