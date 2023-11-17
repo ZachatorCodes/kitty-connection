@@ -12,7 +12,7 @@ import Collapse from "@mui/material/Collapse";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { Box, TextField } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import CatUpdateForm from "./CatUpdateForm";
 
 const ExpandMore = styled((props) => {
@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function CatInfo({ cats }) {
+function CatInfo({ cats, onUpdateCat }) {
   const { id: catID } = useParams();
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
@@ -66,10 +66,10 @@ function CatInfo({ cats }) {
                 <ExpandMoreIcon />
               </ExpandMore>
             </CardActions>
+            <Divider />
             <Collapse in={expanded} timeout="auto" unmountOnExit>
               <CardContent>
-                <Typography>Hello!</Typography>
-                <CatUpdateForm cat={selectedCat}/>
+                <CatUpdateForm cat={selectedCat} onUpdateCat={onUpdateCat} expanded={expanded} setExpanded={setExpanded}/>
               </CardContent>
             </Collapse>
           </Card>
