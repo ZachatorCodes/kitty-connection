@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { styled } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -14,7 +14,8 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import CatUpdateForm from "./CatUpdateForm";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
+import { UserContext } from "../context/user";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,6 +31,7 @@ const ExpandMore = styled((props) => {
 function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
   const navigate = useNavigate();
   const { id: catID } = useParams();
+  const { loggedIn } = useContext(UserContext);
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
   const [expanded, setExpanded] = React.useState(false);
@@ -45,12 +47,35 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
     }).then((r) => {
       if (r.ok) {
         onDeleteCat(selectedCat);
-        navigate("/")
+        navigate("/");
       }
     });
   }
 
   console.log(selectedCat);
+
+  function LoggedInHeader() {
+    return (
+      <CardHeader
+        title={selectedCat.name}
+        subheader={selectedCat.shelter.name}
+        action={
+          <IconButton onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
+        }
+      />
+    );
+  }
+
+  function LoggedOutHeader() {
+    return (
+      <CardHeader
+        title={selectedCat.name}
+        subheader={selectedCat.shelter.name}
+      />
+    );
+  }
 
   if (selectedCat) {
     return (
@@ -65,33 +90,47 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
         </Container>
         <Container maxWidth="sm">
           <Card>
-            <CardHeader title={selectedCat.name} subheader={selectedCat.shelter.name} action={
-          <IconButton onClick={handleDelete}>
-            <DeleteIcon />
-          </IconButton>
-        }/>
+            {loggedIn ? <LoggedInHeader /> : <LoggedOutHeader />}
             <CardContent>
               <Typography>Age: {selectedCat.age}</Typography>
-              <Typography>Sex: {selectedCat.sex === 1 ? "Male" : "Female"}</Typography>
-              <br />
-              <Typography>To edit cat information, please expand the drawer below using the arrow in the bottom right.</Typography>
+              <Typography>
+                Sex: {selectedCat.sex === 1 ? "Male" : "Female"}
+              </Typography>
+              {loggedIn ? (
+                <>
+                  <br />
+                  <Typography>
+                    To edit cat information, please expand the drawer below
+                    using the arrow in the bottom right.
+                  </Typography>
+                </>
+              ) : null}
             </CardContent>
-            <CardActions disableSpacing>
-              <ExpandMore
-                expand={expanded}
-                onClick={handleExpandClick}
-                aria-expanded={expanded}
-                aria-label="show more"
-              >
-                <ExpandMoreIcon />
-              </ExpandMore>
-            </CardActions>
-            <Divider />
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
-              <CardContent>
-                <CatUpdateForm cat={selectedCat} onUpdateCat={onUpdateCat} expanded={expanded} setExpanded={setExpanded}/>
-              </CardContent>
-            </Collapse>
+            {loggedIn ? (
+              <>
+                <CardActions disableSpacing>
+                  <ExpandMore
+                    expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </CardActions>
+                <Divider />
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                  <CardContent>
+                    <CatUpdateForm
+                      cat={selectedCat}
+                      onUpdateCat={onUpdateCat}
+                      expanded={expanded}
+                      setExpanded={setExpanded}
+                    />
+                  </CardContent>
+                </Collapse>
+              </>
+            ) : null}
           </Card>
         </Container>
       </div>
