@@ -24,11 +24,22 @@ function App() {
     setCats(updatedCats);
   }
 
+  function handleUpdateCat(updatedCat) {
+    const updatedCats = cats.map((cat) => {
+      if (cat.id === updatedCat.id) {
+        return updatedCat;
+      } else {
+        return cat;
+      }
+    });
+    setCats(updatedCats);
+  }
+
   return (
     <div className="app">
       <UserProvider>
         <Routes>
-          <Route exact path="/cats/:id" element={<CatInfo cats={cats}/>} />
+          <Route exact path="/cats/:id" element={<CatInfo cats={cats} onUpdateCat={handleUpdateCat}/>} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route
