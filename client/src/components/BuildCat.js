@@ -11,9 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom";
 
 function BuildCat({ cat, onDeleteCat }) {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleDelete() {
     console.log(`${cat.name} was clicked!`);
@@ -24,6 +26,11 @@ function BuildCat({ cat, onDeleteCat }) {
         onDeleteCat(cat);
       }
     });
+  }
+
+  function redirectToCat() {
+    console.log("CAT ID: ", cat.id)
+    navigate(`/cats/${cat.id}`)
   }
 
   function LoggedInHeader() {
@@ -47,7 +54,7 @@ function BuildCat({ cat, onDeleteCat }) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card className="cat-card" elevation={5}>
-        <CardActionArea>
+        <CardActionArea onClick={redirectToCat}>
           {user ? <LoggedInHeader /> : <LoggedOutHeader />}
           <CardContent>
             <Typography>Age: {cat.age}</Typography>
