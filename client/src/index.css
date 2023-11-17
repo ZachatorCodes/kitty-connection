@@ -53,3 +53,11 @@ html {
 .navbar-button:focus {
   box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
 }
+
+.signup-container {
+  display: inline-block;
+  width: 80vw;
+  max-width: 600px;
+  margin-top: 5vh;
+  padding: 10px;
+}
