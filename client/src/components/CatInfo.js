@@ -26,7 +26,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function CatInfo({ cats, onUpdateCat }) {
+function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
   const { id: catID } = useParams();
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
@@ -35,6 +35,17 @@ function CatInfo({ cats, onUpdateCat }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  function handleDelete() {
+    console.log(`${selectedCat.name} was clicked!`);
+    fetch(`/cats/${selectedCat.id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        onDeleteCat(selectedCat);
+      }
+    });
+  }
 
   console.log(selectedCat);
 
@@ -55,6 +66,8 @@ function CatInfo({ cats, onUpdateCat }) {
             <CardContent>
               <Typography>Age: {selectedCat.age}</Typography>
               <Typography>Sex: {selectedCat.sex === 1 ? "Male" : "Female"}</Typography>
+              <br />
+              <Typography>To edit cat information, please expand the drawer below using the arrow in the bottom right.</Typography>
             </CardContent>
             <CardActions disableSpacing>
               <ExpandMore
