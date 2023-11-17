@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
-import { DeleteOutlined, Favorite, FavoriteRounded } from "@mui/icons-material";
 import {
   Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardHeader,
   Grid,
-  IconButton,
   Typography,
 } from "@mui/material";
 import { UserContext } from "../context/user";
