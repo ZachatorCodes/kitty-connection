@@ -25,6 +25,24 @@ function CatInfo({ cats }) {
         </Container>
       </div>
     );
+  } else {
+    return (
+      <div className="cat-info">
+        <Navbar />
+        <Container>
+          <Paper>
+            <Typography padding="3px" margin="24px" align="center" variant="h3">
+              Cat Information
+            </Typography>
+          </Paper>
+        </Container>
+        <Container maxWidth="sm">
+          <Card>
+            <CardHeader align="center" title="Cat Not Found. Sorry!" />
+          </Card>
+        </Container>
+      </div>
+    );
   }
 }
 
