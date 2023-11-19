@@ -6,6 +6,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import CatInfo from "./CatInfo";
+import Shelters from "./Shelters";
+import Profile from "./Profile";
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -40,6 +42,8 @@ function App() {
       <UserProvider>
         <Routes>
           <Route exact path="/cats/:id" element={<CatInfo cats={cats} onUpdateCat={handleUpdateCat} onDeleteCat={handleDeleteCat}/>} />
+          <Route exact path="/shelters"element={<Shelters />} />
+          <Route exact path="/profile"element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route
