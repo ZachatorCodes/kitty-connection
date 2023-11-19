@@ -21,6 +21,12 @@ function Navbar() {
         <NavLink to="/">
           <button className="navbar-button">Home</button>
         </NavLink>
+        <NavLink to="/shelters">
+          <button className="navbar-button">Shelters</button>
+        </NavLink>
+        <NavLink to="/profile">
+          <button className="navbar-button">Profile</button>
+        </NavLink>
         <button className="navbar-button" onClick={logoutUser}>
           Logout
         </button>
