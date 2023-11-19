@@ -13,11 +13,18 @@ function Home({ cats }) {
         <div className="welcome">
           <Container maxWidth="lg">
             <Paper elevation={3}>
-              <Typography padding="3px" margin="24px" align="center" variant="h3">Welcome to Kitty Connection, {user.first_name}</Typography>
+              <Typography
+                padding="3px"
+                margin="24px"
+                align="center"
+                variant="h3"
+              >
+                Welcome to Kitty Connection, {user.first_name}
+              </Typography>
             </Paper>
           </Container>
-          <Cats cats={cats} />
         </div>
+        <Cats cats={cats} />
       </div>
     );
   } else {
@@ -27,7 +34,14 @@ function Home({ cats }) {
         <div className="welcome">
           <Container maxWidth="lg">
             <Paper elevation={3}>
-              <Typography padding="3px" margin="24px" align="center" variant="h3">Welcome to Kitty Connection</Typography>
+              <Typography
+                padding="3px"
+                margin="24px"
+                align="center"
+                variant="h3"
+              >
+                Welcome to Kitty Connection
+              </Typography>
             </Paper>
           </Container>
           <Cats cats={cats} />
