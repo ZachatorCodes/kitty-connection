@@ -5,9 +5,9 @@ import Shelters from "./Shelters";
 
 function ShelterPage({ shelters }) {
   return (
-    <div>
+    <div className="shelter-page">
       <Navbar />
-      <div className="shelter-page">
+      <div className="shelter-info">
         <Container maxWidth="lg">
           <Paper elevation={3}>
             <Typography padding="3px" margin="24px" align="center" variant="h3">
@@ -15,8 +15,8 @@ function ShelterPage({ shelters }) {
             </Typography>
           </Paper>
         </Container>
-        <Shelters shelters={shelters}/>
       </div>
+      <Shelters shelters={shelters} />
     </div>
   );
 }
