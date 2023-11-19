@@ -68,11 +68,7 @@ function App() {
             path="/shelters"
             element={<ShelterPage shelters={shelters} />}
           />
-          <Route
-            exact
-            path="/shelters/:id"
-            element={<ShelterInfo shelters={shelters} />}
-          />
+          <Route exact path="/shelters/:id" element={<ShelterInfo />}/>
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
