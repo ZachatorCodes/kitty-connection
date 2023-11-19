@@ -8,6 +8,7 @@ import Signup from "./Signup";
 import CatInfo from "./CatInfo";
 import Profile from "./Profile";
 import ShelterPage from "./ShelterPage";
+import ShelterInfo from "./ShelterInfo";
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -62,7 +63,12 @@ function App() {
               />
             }
           />
-          <Route exact path="/shelters" element={<ShelterPage shelters={shelters}/>} />
+          <Route
+            exact
+            path="/shelters"
+            element={<ShelterPage shelters={shelters} />}
+          />
+          <Route exact path="/shelters/:id" element={<ShelterInfo />}/>
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
