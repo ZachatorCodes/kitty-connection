@@ -11,6 +11,7 @@ import Profile from "./Profile";
 
 function App() {
   const [cats, setCats] = useState([]);
+  const [shelters, setShelters] = useState([]);
 
   useEffect(() => {
     fetch("/cats")
@@ -18,6 +19,15 @@ function App() {
       .then((cats) => {
         console.log(cats);
         setCats(cats);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch("/shelters")
+      .then((r) => r.json())
+      .then((shelters) => {
+        console.log(shelters);
+        setShelters(shelters);
       });
   }, []);
 
@@ -41,16 +51,22 @@ function App() {
     <div className="app">
       <UserProvider>
         <Routes>
-          <Route exact path="/cats/:id" element={<CatInfo cats={cats} onUpdateCat={handleUpdateCat} onDeleteCat={handleDeleteCat}/>} />
-          <Route exact path="/shelters"element={<Shelters />} />
-          <Route exact path="/profile"element={<Profile />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup />} />
           <Route
             exact
-            path="/"
-            element={<Home cats={cats} />}
+            path="/cats/:id"
+            element={
+              <CatInfo
+                cats={cats}
+                onUpdateCat={handleUpdateCat}
+                onDeleteCat={handleDeleteCat}
+              />
+            }
           />
+          <Route exact path="/shelters" element={<Shelters />} />
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/" element={<Home cats={cats} />} />
         </Routes>
       </UserProvider>
     </div>
