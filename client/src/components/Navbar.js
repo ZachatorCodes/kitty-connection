@@ -24,6 +24,9 @@ function Navbar() {
         <NavLink to="/shelters">
           <button className="navbar-button">Shelters</button>
         </NavLink>
+        <NavLink to="/cats/new">
+          <button className="navbar-button">Add A Cat</button>
+        </NavLink>
         <NavLink to="/profile">
           <button className="navbar-button">Profile</button>
         </NavLink>
