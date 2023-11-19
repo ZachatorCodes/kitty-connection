@@ -9,6 +9,7 @@ import CatInfo from "./CatInfo";
 import Profile from "./Profile";
 import ShelterPage from "./ShelterPage";
 import ShelterInfo from "./ShelterInfo";
+import CreateCat from "./CreateCat";
 
 function App() {
   const [cats, setCats] = useState([]);
@@ -68,10 +69,12 @@ function App() {
             path="/shelters"
             element={<ShelterPage shelters={shelters} />}
           />
+          <Route exact path="/cats/new" element={<CreateCat />} />
           <Route exact path="/shelters/:id" element={<ShelterInfo shelters={shelters}/>}/>
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/cats" element={<Home cats={cats} />} />
           <Route exact path="/" element={<Home cats={cats} />} />
         </Routes>
       </UserProvider>
