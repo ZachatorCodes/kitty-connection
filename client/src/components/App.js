@@ -33,6 +33,17 @@ function App() {
       });
   }, []);
 
+  function handleAddCat(addedCat) {
+    const updatedCats = cats.map((cat) => {
+      if (cat.id === addedCat.id) {
+        return addedCat;
+      } else {
+        return cat;
+      }
+    });
+    setCats(updatedCats);
+  }
+
   function handleDeleteCat(deletedCat) {
     const updatedCats = cats.filter((cat) => cat.id !== deletedCat.id);
     setCats(updatedCats);
@@ -70,7 +81,11 @@ function App() {
             element={<ShelterPage shelters={shelters} />}
           />
           <Route exact path="/cats/new" element={<CreateCat />} />
-          <Route exact path="/shelters/:id" element={<ShelterInfo shelters={shelters}/>}/>
+          <Route
+            exact
+            path="/shelters/:id"
+            element={<ShelterInfo shelters={shelters} />}
+          />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
