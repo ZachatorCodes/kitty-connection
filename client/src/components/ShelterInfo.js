@@ -1,11 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
-import { Container, Paper, Typography } from "@mui/material";
+import { Card, CardHeader, Container, Paper, Typography } from "@mui/material";
 
 function ShelterInfo({ shelters }) {
   const { id: shelterID } = useParams();
-  
+
   const selectedShelter = shelters.find(
     (shelter) => shelter.id === parseInt(shelterID)
   );
@@ -20,6 +20,11 @@ function ShelterInfo({ shelters }) {
               Shelter Information
             </Typography>
           </Paper>
+        </Container>
+        <Container maxWidth="sm">
+          <Card>
+            <CardHeader title={selectedShelter.name} subheader={`Located In: ${selectedShelter.city}`} />
+          </Card>
         </Container>
       </div>
     </div>
