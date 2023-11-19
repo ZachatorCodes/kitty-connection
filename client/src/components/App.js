@@ -80,11 +80,15 @@ function App() {
             path="/shelters"
             element={<ShelterPage shelters={shelters} />}
           />
-          <Route exact path="/cats/new" element={<CreateCat />} />
           <Route
             exact
             path="/shelters/:id"
             element={<ShelterInfo shelters={shelters} />}
+          />
+          <Route
+            exact
+            path="/cats/new"
+            element={<CreateCat shelters={shelters} />}
           />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
