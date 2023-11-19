@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { Container, Paper, Typography } from "@mui/material";
+import Shelters from "./Shelters";
 
 function ShelterPage({ shelters }) {
   return (
@@ -14,6 +15,7 @@ function ShelterPage({ shelters }) {
             </Typography>
           </Paper>
         </Container>
+        <Shelters shelters={shelters}/>
       </div>
     </div>
   );
