@@ -19,8 +19,10 @@ import {
   Typography,
 } from "@mui/material";
 import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom";
 
-function CreateCat({ shelters }) {
+function CreateCat({ shelters, onAddCat }) {
+  const navigate = useNavigate();
   const { loggedIn } = useContext(UserContext);
   const [errors, setErrors] = useState(null);
   const [catObj, setCatObj] = useState({
@@ -40,6 +42,21 @@ function CreateCat({ shelters }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    fetch("/cats", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(catObj),
+    })
+      .then((r) => r.json())
+      .then((cat) => {
+        if (!cat.errors) {
+          console.log(cat)
+          onAddCat(cat);
+          navigate("/");
+        } else {
+          setErrors(cat.errors);
+        }
+      });
   }
 
   function handleChange(e) {
@@ -56,95 +73,86 @@ function CreateCat({ shelters }) {
 
   if (loggedIn) {
     return (
-      <div className="create-cat">
+      <div>
         <Navbar />
-        <div className="create-cat-info" align="center">
-          <Container maxWidth="md">
-            <Paper elevation={3}>
-              <Typography
-                padding="3px"
-                margin="24px"
-                align="center"
-                variant="h3"
+        <div align="center">
+          <Paper elevation={3} className="add-cat-container">
+            <Typography padding="3px" margin="24px" align="center" variant="h3">
+              Add A Cat
+            </Typography>
+            <Box component="form" onSubmit={handleSubmit}>
+              <TextField
+                required
+                variant="filled"
+                name="name"
+                label="Name"
+                value={catObj.name}
+                onChange={handleChange}
+                sx={{ margin: "5px" }}
+              ></TextField>
+              <TextField
+                required
+                variant="filled"
+                name="age"
+                label="Age"
+                value={catObj.age}
+                onChange={handleChange}
+                sx={{ margin: "5px" }}
+              ></TextField>
+              <RadioGroup
+                required
+                row
+                name="sex"
+                label="Sex"
+                value={catObj.sex}
+                onChange={handleChange}
+                sx={{ margin: "5px" }}
               >
-                Add A Cat
-              </Typography>
-              <Box component="form" onSubmit={handleSubmit}>
-                <TextField
-                  required
-                  variant="filled"
-                  name="name"
-                  label="Name"
-                  value={catObj.name}
+                <Container>
+                  <FormControlLabel
+                    value={1}
+                    control={<Radio />}
+                    label="Male"
+                  />
+                  <FormControlLabel
+                    value={2}
+                    control={<Radio />}
+                    label="Female"
+                  />
+                </Container>
+              </RadioGroup>
+              <FormControl
+                required
+                variant="filled"
+                sx={{ m: 1, minWidth: 250, margin: "5px" }}
+              >
+                <InputLabel id="shelter-label">Shelter</InputLabel>
+                <Select
+                  labelId="shelter-label"
+                  name="shelter_id"
+                  value={catObj.shelter_id}
                   onChange={handleChange}
-                  sx={{ margin: "5px" }}
-                ></TextField>
-                <TextField
-                  required
-                  variant="filled"
-                  name="age"
-                  label="Age"
-                  value={catObj.age}
-                  onChange={handleChange}
-                  sx={{ margin: "5px" }}
-                ></TextField>
-                <RadioGroup
-                  required
-                  row
-                  name="sex"
-                  label="Sex"
-                  value={catObj.sex}
-                  onChange={handleChange}
-                  sx={{ margin: "5px" }}
+                  label="Shelter"
                 >
-                  <Container>
-                    <FormControlLabel
-                      value={1}
-                      control={<Radio />}
-                      label="Male"
-                    />
-                    <FormControlLabel
-                      value={2}
-                      control={<Radio />}
-                      label="Female"
-                    />
-                  </Container>
-                </RadioGroup>
-                <FormControl required variant="filled" sx={{ m: 1, minWidth: 250, margin: "5px"}}>
-                  <InputLabel id="shelter-label">
-                    Shelter
-                  </InputLabel>
-                  <Select
-                    labelId="shelter-label"
-                    name="shelter_id"
-                    value={catObj.shelter_id}
-                    onChange={handleChange}
-                    label="Shelter"
-                  >
-                    {shelterOptions}
-                  </Select>
-                </FormControl>
-                <br />
-                <Button
-                sx={{ margin: "5px"}}
-                  type="submit"
-                  className="login-button"
-                  variant="contained"
-                >
-                  Log In
-                </Button>
-              </Box>
-              {errors ? (
-                <Alert
-                  severity="error"
-                  variant="filled"
-                  className="login-alert"
-                >
-                  {errors}
-                </Alert>
-              ) : null}
-            </Paper>
-          </Container>
+                  {shelterOptions}
+                </Select>
+              </FormControl>
+              <br />
+              <Button
+                sx={{ margin: "5px" }}
+                type="submit"
+                className="login-button"
+                variant="contained"
+              >
+                Submit Cat
+              </Button>
+            </Box>
+            {errors ? (
+              <Alert severity="error" variant="filled" className="login-alert">
+                {errors[0]}
+              </Alert>
+            ) : null}
+          </Paper>
         </div>
       </div>
     );
