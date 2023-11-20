@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 import CatUpdateForm from "./CatUpdateForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../context/user";
+import { Button } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -53,6 +54,10 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
   }
 
   console.log(selectedCat);
+
+  function redirectToShelter() {
+    navigate(`/shelters/${selectedCat.shelter.id}`);
+  }
 
   function LoggedInHeader() {
     return (
@@ -109,6 +114,9 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
             {loggedIn ? (
               <>
                 <CardActions disableSpacing>
+                  <Button onClick={redirectToShelter} size="small">
+                    Visit Shelter
+                  </Button>
                   <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -130,7 +138,13 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
                   </CardContent>
                 </Collapse>
               </>
-            ) : null}
+            ) : (
+              <CardActions disableSpacing>
+                <Button onClick={redirectToShelter} size="small">
+                  Visit Shelter
+                </Button>{" "}
+              </CardActions>
+            )}
           </Card>
         </Container>
       </div>
