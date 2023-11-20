@@ -12,6 +12,11 @@ class CatsController < ApplicationController
     render json: cat, status: :ok
   end
 
+  def create
+    cat = Cat.create!(cat_params)
+    render json: cat, status: :created
+  end
+
   def destroy
     cat = Cat.find(params[:id])
     cat.destroy
@@ -22,5 +27,9 @@ class CatsController < ApplicationController
 
   def update_cat_params
     params.permit(:name, :age, :sex)
+  end
+
+  def cat_params
+    params.permit(:name, :age, :sex, :shelter_id)
   end
 end
