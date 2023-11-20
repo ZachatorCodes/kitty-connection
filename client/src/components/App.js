@@ -34,13 +34,7 @@ function App() {
   }, []);
 
   function handleAddCat(addedCat) {
-    const updatedCats = cats.map((cat) => {
-      if (cat.id === addedCat.id) {
-        return addedCat;
-      } else {
-        return cat;
-      }
-    });
+    const updatedCats = [...cats, addedCat];
     setCats(updatedCats);
   }
 
@@ -88,7 +82,7 @@ function App() {
           <Route
             exact
             path="/cats/new"
-            element={<CreateCat shelters={shelters} />}
+            element={<CreateCat shelters={shelters} onAddCat={handleAddCat} />}
           />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/login" element={<Login />} />
