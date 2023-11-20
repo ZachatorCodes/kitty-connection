@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   # Cat routes
-  resources :cats, only: [:index, :update, :destroy]
+  resources :cats, only: [:index, :update, :destroy, :create]
   resources :shelters, only: [:index]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
