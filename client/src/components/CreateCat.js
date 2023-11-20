@@ -95,7 +95,7 @@ function CreateCat({ shelters }) {
                   label="Sex"
                   value={catObj.sex}
                   onChange={handleChange}
-                  sx={{ margin: "5px", textAlign: "center" }}
+                  sx={{ margin: "5px" }}
                 >
                   <Container>
                     <FormControlLabel
@@ -110,13 +110,12 @@ function CreateCat({ shelters }) {
                     />
                   </Container>
                 </RadioGroup>
-                <FormControl variant="filled" sx={{ m: 1, minWidth: 250, margin: "5px"}}>
-                  <InputLabel id="demo-simple-select-standard-label">
+                <FormControl required variant="filled" sx={{ m: 1, minWidth: 250, margin: "5px"}}>
+                  <InputLabel id="shelter-label">
                     Shelter
                   </InputLabel>
                   <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
+                    labelId="shelter-label"
                     name="shelter_id"
                     value={catObj.shelter_id}
                     onChange={handleChange}
