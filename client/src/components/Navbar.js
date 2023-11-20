@@ -41,6 +41,9 @@ function Navbar() {
         <NavLink to="/">
           <button className="navbar-button">Home</button>
         </NavLink>
+        <NavLink to="/shelters">
+          <button className="navbar-button">Shelters</button>
+        </NavLink>
         <NavLink to="/login">
           <button className="navbar-button">Log In</button>
         </NavLink>
