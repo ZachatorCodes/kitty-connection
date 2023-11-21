@@ -17,8 +17,33 @@ function CatsProvider({ children }) {
       });
   }, []);
 
+  const handleAddCat = (addedCat) => {
+    const updatedCats = [...cats, addedCat];
+    setCats(updatedCats);
+  };
+
+  const handleDeleteCat = (deletedCat) => {
+    const updatedCats = cats.filter((cat) => cat.id !== deletedCat.id);
+    setCats(updatedCats);
+  };
+
+  const handleUpdateCat = (updatedCat) => {
+    const updatedCats = cats.map((cat) => {
+      if (cat.id === updatedCat.id) {
+        return updatedCat;
+      } else {
+        return cat;
+      }
+    });
+    setCats(updatedCats);
+  };
+
   return (
-    <CatsContext.Provider value={{ cats }}>{children}</CatsContext.Provider>
+    <CatsContext.Provider
+      value={{ cats, handleAddCat, handleDeleteCat, handleUpdateCat }}
+    >
+      {children}
+    </CatsContext.Provider>
   );
 }
 
