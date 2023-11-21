@@ -12,48 +12,6 @@ import ShelterInfo from "./ShelterInfo";
 import CreateCat from "./CreateCat";
 
 function App() {
-  const [cats, setCats] = useState([]);
-  const [shelters, setShelters] = useState([]);
-
-  useEffect(() => {
-    fetch("/cats")
-      .then((r) => r.json())
-      .then((cats) => {
-        console.log(cats);
-        setCats(cats);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("/shelters")
-      .then((r) => r.json())
-      .then((shelters) => {
-        console.log(shelters);
-        setShelters(shelters);
-      });
-  }, []);
-
-  function handleAddCat(addedCat) {
-    const updatedCats = [...cats, addedCat];
-    setCats(updatedCats);
-  }
-
-  function handleDeleteCat(deletedCat) {
-    const updatedCats = cats.filter((cat) => cat.id !== deletedCat.id);
-    setCats(updatedCats);
-  }
-
-  function handleUpdateCat(updatedCat) {
-    const updatedCats = cats.map((cat) => {
-      if (cat.id === updatedCat.id) {
-        return updatedCat;
-      } else {
-        return cat;
-      }
-    });
-    setCats(updatedCats);
-  }
-
   return (
     <div className="app">
       <UserProvider>
