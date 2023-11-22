@@ -35,7 +35,7 @@ function CatInfo() {
   const navigate = useNavigate();
   const { id: catID } = useParams();
   const { loggedIn } = useContext(UserContext);
-  const selectedCat = cats.find((cfat) => cat.id === parseInt(catID));
+  const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
   const [expanded, setExpanded] = React.useState(false);
 
