@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Navbar from "./Navbar";
-import { Card, CardHeader, Container, Paper, Typography } from "@mui/material";
+import { Card, CardContent, CardHeader, Container, Paper, Typography } from "@mui/material";
 import { UserContext } from "../context/user";
 
 function Profile() {
@@ -25,7 +25,8 @@ function Profile() {
           </Container>
           <Container maxWidth="sm">
             <Card>
-              <CardHeader title={`${user.first_name} ${user.last_name}`} />
+              <CardHeader title={`${user.first_name} ${user.last_name} | ${user.username}`} subheader={user.email}/>
+              <CardContent><Typography>{user.bio}</Typography></CardContent>
             </Card>
           </Container>
         </div>
