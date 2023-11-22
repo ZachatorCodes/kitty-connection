@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Alert, Button, Card, Paper } from "@mui/material";
+import { Alert, Button, Paper } from "@mui/material";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";

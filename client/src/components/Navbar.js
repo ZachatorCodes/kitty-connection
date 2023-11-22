@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  const navigate = useNavigate();
   const { logout, loggedIn } = useContext(UserContext);
 
   function logoutUser() {

@@ -1,19 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
-  Button,
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
   CardHeader,
   Grid,
   Typography,
 } from "@mui/material";
-import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
 
 function BuildCat({ cat }) {
-  const { loggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
   function redirectToCat() {
