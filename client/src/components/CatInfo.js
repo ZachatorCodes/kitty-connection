@@ -17,6 +17,7 @@ import CatUpdateForm from "./CatUpdateForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../context/user";
 import { Button } from "@mui/material";
+import { CatsContext } from "../context/cats";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,11 +30,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
+function CatInfo() {
+  const { cats, onDeleteCat } = useContext(CatsContext);
   const navigate = useNavigate();
   const { id: catID } = useParams();
   const { loggedIn } = useContext(UserContext);
-  const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
+  const selectedCat = cats.find((cfat) => cat.id === parseInt(catID));
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -131,7 +133,6 @@ function CatInfo({ cats, onUpdateCat, onDeleteCat }) {
                   <CardContent>
                     <CatUpdateForm
                       cat={selectedCat}
-                      onUpdateCat={onUpdateCat}
                       expanded={expanded}
                       setExpanded={setExpanded}
                     />
