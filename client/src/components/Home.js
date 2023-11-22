@@ -6,7 +6,7 @@ import Cats from "./Cats";
 import { CatsContext } from "../context/cats";
 
 function Home() {
-  const { loggedIn } = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
   const { cats } = useContext(CatsContext);
 
   if (loggedIn) {
