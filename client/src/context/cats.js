@@ -17,17 +17,17 @@ function CatsProvider({ children }) {
       });
   }, []);
 
-  const handleAddCat = (addedCat) => {
+  const onAddCat = (addedCat) => {
     const updatedCats = [...cats, addedCat];
     setCats(updatedCats);
   };
 
-  const handleDeleteCat = (deletedCat) => {
+  const onDeleteCat = (deletedCat) => {
     const updatedCats = cats.filter((cat) => cat.id !== deletedCat.id);
     setCats(updatedCats);
   };
 
-  const handleUpdateCat = (updatedCat) => {
+  const onUpdateCat = (updatedCat) => {
     const updatedCats = cats.map((cat) => {
       if (cat.id === updatedCat.id) {
         return updatedCat;
@@ -40,7 +40,7 @@ function CatsProvider({ children }) {
 
   return (
     <CatsContext.Provider
-      value={{ cats, handleAddCat, handleDeleteCat, handleUpdateCat }}
+      value={{ cats, onAddCat, onDeleteCat, onUpdateCat }}
     >
       {children}
     </CatsContext.Provider>
