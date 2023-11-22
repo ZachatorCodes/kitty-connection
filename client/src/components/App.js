@@ -21,11 +21,7 @@ function App() {
           <SheltersProvider>
             <Routes>
               <Route exact path="/cats/:id" element={<CatInfo />} />
-              <Route
-                exact
-                path="/shelters"
-                element={<ShelterPage shelters={shelters} />}
-              />
+              <Route exact path="/shelters" element={<ShelterPage />} />
               <Route
                 exact
                 path="/shelters/:id"
