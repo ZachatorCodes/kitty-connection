@@ -20,17 +20,7 @@ function App() {
         <CatsProvider>
           <SheltersProvider>
             <Routes>
-              <Route
-                exact
-                path="/cats/:id"
-                element={
-                  <CatInfo
-                    cats={cats}
-                    onUpdateCat={handleUpdateCat}
-                    onDeleteCat={handleDeleteCat}
-                  />
-                }
-              />
+              <Route exact path="/cats/:id" element={<CatInfo />} />
               <Route
                 exact
                 path="/shelters"
