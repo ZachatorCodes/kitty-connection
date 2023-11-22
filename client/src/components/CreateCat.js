@@ -20,8 +20,12 @@ import {
 } from "@mui/material";
 import { UserContext } from "../context/user";
 import { useNavigate } from "react-router-dom";
+import { SheltersContext } from "../context/shelters";
+import { CatsContext } from "../context/cats";
 
-function CreateCat({ shelters, onAddCat }) {
+function CreateCat() {
+  const { shelters } = useContext(SheltersContext);
+  const { onAddCat } = useContext(CatsContext);
   const navigate = useNavigate();
   const { loggedIn } = useContext(UserContext);
   const [errors, setErrors] = useState(null);
@@ -50,7 +54,7 @@ function CreateCat({ shelters, onAddCat }) {
       .then((r) => r.json())
       .then((cat) => {
         if (!cat.errors) {
-          console.log(cat)
+          console.log(cat);
           onAddCat(cat);
           navigate("/");
         } else {
