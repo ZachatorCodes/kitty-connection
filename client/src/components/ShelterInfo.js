@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Card, CardHeader, Container, Paper, Typography } from "@mui/material";
 import Cats from "./Cats";
+import { SheltersContext } from "../context/shelters";
 
-function ShelterInfo({ shelters }) {
+function ShelterInfo() {
+  const { shelters } = useContext(SheltersContext);
   const { id: shelterID } = useParams();
 
   const selectedShelter = shelters.find(
