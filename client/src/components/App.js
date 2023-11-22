@@ -22,11 +22,7 @@ function App() {
             <Routes>
               <Route exact path="/cats/:id" element={<CatInfo />} />
               <Route exact path="/shelters" element={<ShelterPage />} />
-              <Route
-                exact
-                path="/shelters/:id"
-                element={<ShelterInfo shelters={shelters} />}
-              />
+              <Route exact path="/shelters/:id" element={<ShelterInfo />} />
               <Route
                 exact
                 path="/cats/new"
