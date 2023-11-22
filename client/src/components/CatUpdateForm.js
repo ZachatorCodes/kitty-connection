@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
@@ -8,8 +8,10 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
+import { CatsContext } from "../context/cats";
 
-function CatUpdateForm({ cat, onUpdateCat, expanded, setExpanded }) {
+function CatUpdateForm({ cat, expanded, setExpanded }) {
+  const { onUpdateCat } = useContext(CatsContext);
   const [catObj, setCatObj] = useState({
     name: cat.name,
     age: cat.age,
