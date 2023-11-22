@@ -3,10 +3,13 @@ import { UserContext } from "../context/user";
 import Navbar from "./Navbar";
 import { Container, Paper, Typography } from "@mui/material";
 import Cats from "./Cats";
+import { CatsContext } from "../context/cats";
 
-function Home({ cats }) {
-  const { user } = useContext(UserContext);
-  if (user) {
+function Home() {
+  const { loggedIn } = useContext(UserContext);
+  const { cats } = useContext(CatsContext);
+
+  if (loggedIn) {
     return (
       <div className="home">
         <Navbar />
