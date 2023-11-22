@@ -23,13 +23,7 @@ function App() {
               <Route exact path="/cats/:id" element={<CatInfo />} />
               <Route exact path="/shelters" element={<ShelterPage />} />
               <Route exact path="/shelters/:id" element={<ShelterInfo />} />
-              <Route
-                exact
-                path="/cats/new"
-                element={
-                  <CreateCat shelters={shelters} onAddCat={handleAddCat} />
-                }
-              />
+              <Route exact path="/cats/new" element={<CreateCat />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
