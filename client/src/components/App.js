@@ -27,8 +27,8 @@ function App() {
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/signup" element={<Signup />} />
-              <Route exact path="/cats" element={<Home cats={cats} />} />
-              <Route exact path="/" element={<Home cats={cats} />} />
+              <Route exact path="/cats" element={<Home />} />
+              <Route exact path="/" element={<Home />} />
             </Routes>
           </SheltersProvider>
         </CatsProvider>
