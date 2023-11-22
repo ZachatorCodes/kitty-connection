@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Container, Paper, Typography } from "@mui/material";
 import Shelters from "./Shelters";
 
-function ShelterPage({ shelters }) {
+function ShelterPage() {
   return (
     <div className="shelter-page">
       <Navbar />
@@ -16,7 +16,7 @@ function ShelterPage({ shelters }) {
           </Paper>
         </Container>
       </div>
-      <Shelters shelters={shelters} />
+      <Shelters />
     </div>
   );
 }
