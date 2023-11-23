@@ -111,7 +111,8 @@ puts 'Seeding Applications 📋'
     {
       user_id: rand(1..3),
       cat_id: Faker::Number.unique.within(range: 1..50),
-      cat_name: Faker::Name.name
+      cat_name: Faker::Name.name,
+      shelter_name: Faker::Address.city
     }
   )
 end
