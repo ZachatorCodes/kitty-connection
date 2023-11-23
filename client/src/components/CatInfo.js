@@ -34,7 +34,7 @@ function CatInfo() {
   const { cats, onDeleteCat } = useContext(CatsContext);
   const navigate = useNavigate();
   const { id: catID } = useParams();
-  const { loggedIn } = useContext(UserContext);
+  const { loggedIn, user } = useContext(UserContext);
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
   const [expanded, setExpanded] = React.useState(false);
@@ -84,6 +84,21 @@ function CatInfo() {
     );
   }
 
+  function handlePostApplication() {
+    fetch("/applications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cat_id: selectedCat.id,
+        user_id: user.id,
+      }),
+    })
+      .then((r) => r.json())
+      .then((application) => {
+        console.log(application);
+      });
+  }
+
   if (selectedCat) {
     return (
       <div className="cat-info">
@@ -116,10 +131,22 @@ function CatInfo() {
             {loggedIn ? (
               <>
                 <CardActions disableSpacing>
-                  <Button onClick={redirectToShelter} size="small" variant="contained" sx={{margin: "5px"}}>
+                  <Button
+                    onClick={redirectToShelter}
+                    size="small"
+                    variant="contained"
+                    sx={{ margin: "5px" }}
+                  >
                     Visit Shelter
                   </Button>
-                  <Button variant="contained" size="small" sx={{margin: "5px"}}>Apply To Adopt</Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    sx={{ margin: "5px" }}
+                    onClick={handlePostApplication}
+                  >
+                    Apply To Adopt
+                  </Button>
                   <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -142,7 +169,11 @@ function CatInfo() {
               </>
             ) : (
               <CardActions disableSpacing>
-                <Button onClick={redirectToShelter} size="small" variant="contained">
+                <Button
+                  onClick={redirectToShelter}
+                  size="small"
+                  variant="contained"
+                >
                   Visit Shelter
                 </Button>{" "}
               </CardActions>
