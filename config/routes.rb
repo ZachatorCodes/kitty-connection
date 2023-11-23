@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # Resources
   resources :cats, only: [:index, :update, :destroy, :create]
   resources :shelters, only: [:index]
-  resources :applications, only: [:create]
+  resources :applications, only: [:create, :index]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
