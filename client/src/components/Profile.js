@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Navbar from "./Navbar";
 import { Card, CardContent, CardHeader, Container, Paper, Typography } from "@mui/material";
 import { UserContext } from "../context/user";
+import Applications from "./Applications";
 
 function Profile() {
   const { loggedIn, user } = useContext(UserContext);
@@ -37,6 +38,7 @@ function Profile() {
             </Typography>
           </Paper>
         </Container>
+        <Applications applications={user.applications}/>
         </div>
       </div>
     );
