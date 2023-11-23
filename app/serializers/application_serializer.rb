@@ -1,3 +1,3 @@
 class ApplicationSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :cat_id, :cat_name
+  attributes :id, :user_id, :cat_id, :cat_name, :shelter_name
 end
