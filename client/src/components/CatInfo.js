@@ -31,10 +31,10 @@ const ExpandMore = styled((props) => {
 }));
 
 function CatInfo() {
-  const { cats, onDeleteCat } = useContext(CatsContext);
+  const { cats, onDeleteCat, setCats } = useContext(CatsContext);
   const navigate = useNavigate();
   const { id: catID } = useParams();
-  const { loggedIn, user } = useContext(UserContext);
+  const { loggedIn, user, setUser } = useContext(UserContext);
   const selectedCat = cats.find((cat) => cat.id === parseInt(catID));
 
   const [expanded, setExpanded] = React.useState(false);
@@ -96,6 +96,25 @@ function CatInfo() {
       .then((r) => r.json())
       .then((application) => {
         console.log(application);
+        if (!application.errors) {
+          const updatedCats = cats.map((cat) => {
+            if (cat.id === selectedCat.id) {
+              return {
+                ...selectedCat,
+                applications: [...selectedCat.applications, application],
+              };
+            } else {
+              return cat;
+            }
+          });
+          setUser({
+            ...user,
+            applications: [...user.applications, application],
+          });
+          setCats(updatedCats);
+        } else {
+          console.log("THERE'S AN ERROR")
+        }
       });
   }
 
