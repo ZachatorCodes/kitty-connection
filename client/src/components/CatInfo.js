@@ -95,6 +95,7 @@ function CatInfo() {
         cat_id: selectedCat.id,
         user_id: user.id,
         cat_name: selectedCat.name,
+        shelter_name: selectedCat.shelter.name
       }),
     })
       .then((r) => r.json())
