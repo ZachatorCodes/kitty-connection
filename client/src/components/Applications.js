@@ -1,8 +1,16 @@
+import { Grid } from '@mui/material'
 import React from 'react'
+import BuildApplication from './BuildApplication'
 
-function Applications() {
+function Applications({applications}) {
   return (
-    <div>Applications</div>
+    <div className='applications'>
+      <Grid container spacing={2}>
+        {applications.map((application, index) => (
+          <BuildApplication application={application} key={index}/>
+        ))}
+      </Grid>
+    </div>
   )
 }
 
