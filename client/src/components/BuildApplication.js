@@ -3,14 +3,12 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function BuildApplication({ application }) {
-  function handleApplicationState() {}
-
   function handleDelete() {
     fetch(`/applications/${application.id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        handleApplicationState(application);
+        // PLACEHOLDER
       }
     });
   }
