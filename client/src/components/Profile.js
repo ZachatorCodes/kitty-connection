@@ -30,6 +30,13 @@ function Profile() {
               <CardContent><Typography>{user.bio}</Typography></CardContent>
             </Card>
           </Container>
+          <Container maxWidth="lg">
+          <Paper elevation={3}>
+            <Typography padding="3px" margin="24px" align="center" variant="h3">
+              Active Adoption Applications
+            </Typography>
+          </Paper>
+        </Container>
         </div>
       </div>
     );
