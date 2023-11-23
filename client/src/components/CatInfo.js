@@ -116,9 +116,10 @@ function CatInfo() {
             {loggedIn ? (
               <>
                 <CardActions disableSpacing>
-                  <Button onClick={redirectToShelter} size="small">
+                  <Button onClick={redirectToShelter} size="small" variant="contained" sx={{margin: "5px"}}>
                     Visit Shelter
                   </Button>
+                  <Button variant="contained" size="small" sx={{margin: "5px"}}>Apply To Adopt</Button>
                   <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -141,7 +142,7 @@ function CatInfo() {
               </>
             ) : (
               <CardActions disableSpacing>
-                <Button onClick={redirectToShelter} size="small">
+                <Button onClick={redirectToShelter} size="small" variant="contained">
                   Visit Shelter
                 </Button>{" "}
               </CardActions>
