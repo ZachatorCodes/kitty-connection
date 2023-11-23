@@ -32,7 +32,8 @@ const ExpandMore = styled((props) => {
 }));
 
 function CatInfo() {
-  const [errors, setErrors] = useState(null)
+  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState(null);
   const { cats, onDeleteCat, setCats } = useContext(CatsContext);
   const navigate = useNavigate();
   const { id: catID } = useParams();
@@ -93,13 +94,15 @@ function CatInfo() {
       body: JSON.stringify({
         cat_id: selectedCat.id,
         user_id: user.id,
-        cat_name: selectedCat.name
+        cat_name: selectedCat.name,
       }),
     })
       .then((r) => r.json())
       .then((application) => {
         console.log(application);
         if (!application.errors) {
+          setSuccess(true);
+          setErrors(null);
           const updatedCats = cats.map((cat) => {
             if (cat.id === selectedCat.id) {
               return {
@@ -116,7 +119,8 @@ function CatInfo() {
           });
           setCats(updatedCats);
         } else {
-          setErrors(application.errors)
+          setErrors(application.errors);
+          setSuccess(false);
         }
       });
   }
@@ -179,10 +183,23 @@ function CatInfo() {
                   </ExpandMore>
                 </CardActions>
                 {errors ? (
-            <Alert severity="error" variant="filled" className="login-alert">
-              {errors[0]}
-            </Alert>
-          ) : null}
+                  <Alert
+                    severity="error"
+                    variant="filled"
+                    className="application-failed"
+                  >
+                    {errors[0]}
+                  </Alert>
+                ) : null}
+                {success ? (
+                  <Alert
+                    severity="success"
+                    variant="filled"
+                    className="application-submitted"
+                  >
+                    Application successfully submitted
+                  </Alert>
+                ) : null}
                 <Divider />
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
