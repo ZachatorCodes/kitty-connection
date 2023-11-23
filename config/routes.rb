@@ -13,9 +13,10 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
 
-  # Cat routes
+  # Resources
   resources :cats, only: [:index, :update, :destroy, :create]
   resources :shelters, only: [:index]
+  resources :applications, only: [:create]
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
