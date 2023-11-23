@@ -14,6 +14,6 @@ class ApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:user_id, :cat_id)
+    params.permit(:user_id, :cat_id, :cat_name)
   end
 end
