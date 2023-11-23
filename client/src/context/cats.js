@@ -40,7 +40,7 @@ function CatsProvider({ children }) {
 
   return (
     <CatsContext.Provider
-      value={{ cats, onAddCat, onDeleteCat, onUpdateCat }}
+      value={{ cats, setCats, onAddCat, onDeleteCat, onUpdateCat }}
     >
       {children}
     </CatsContext.Provider>
