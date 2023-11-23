@@ -5,6 +5,7 @@ import { UserContext } from "../context/user";
 
 function Profile() {
   const { loggedIn, user } = useContext(UserContext);
+  console.log(user)
 
   if (loggedIn) {
     return (
