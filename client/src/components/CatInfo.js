@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 import { styled } from "@mui/material/styles";
@@ -11,6 +11,7 @@ import CardHeader from "@mui/material/CardHeader";
 import Collapse from "@mui/material/Collapse";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
+import Alert from "@mui/material/Alert";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import CatUpdateForm from "./CatUpdateForm";
@@ -31,6 +32,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function CatInfo() {
+  const [errors, setErrors] = useState(null)
   const { cats, onDeleteCat, setCats } = useContext(CatsContext);
   const navigate = useNavigate();
   const { id: catID } = useParams();
@@ -113,7 +115,7 @@ function CatInfo() {
           });
           setCats(updatedCats);
         } else {
-          console.log("THERE'S AN ERROR")
+          setErrors(application.errors)
         }
       });
   }
@@ -175,6 +177,11 @@ function CatInfo() {
                     <ExpandMoreIcon />
                   </ExpandMore>
                 </CardActions>
+                {errors ? (
+            <Alert severity="error" variant="filled" className="login-alert">
+              {errors[0]}
+            </Alert>
+          ) : null}
                 <Divider />
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
