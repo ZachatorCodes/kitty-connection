@@ -1,14 +1,38 @@
 import { Card, CardHeader, Grid, IconButton } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { CatsContext } from "../context/cats";
+import { UserContext } from "../context/user";
 
 function BuildApplication({ application }) {
+  const { cats, setCats } = useContext(CatsContext);
+  const { setUser, user } = useContext(UserContext);
+  const selectedCat = cats.find((cat) => cat.id === application.cat_id);
+
+  // handles the fetch request and state management of application deletion
   function handleDelete() {
     fetch(`/applications/${application.id}`, {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        // PLACEHOLDER
+        const filteredApplications = user.applications.filter(
+          (userApp) => application.id !== userApp.id
+        );
+        const updatedCats = cats.map((cat) => {
+          if (cat.id === selectedCat.id) {
+            return {
+              ...cat,
+              applications: filteredApplications,
+            };
+          } else {
+            return cat;
+          }
+        });
+        setUser({
+          ...user,
+          applications: filteredApplications,
+        });
+        setCats(updatedCats);
       }
     });
   }
