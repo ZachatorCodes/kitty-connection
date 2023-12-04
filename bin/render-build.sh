@@ -12,7 +12,7 @@ bundle install
 bundle exec rake db:migrate
 
 # if you have seed data, run this command for the initial deploy only to avoid duplicate records
-# bundle exec rake db:seed 
+bundle exec rake db:seed 
 
 # for destructive behavior
 # DISABLE_DATABASE_ENVIRONMENT_CHECK=1
