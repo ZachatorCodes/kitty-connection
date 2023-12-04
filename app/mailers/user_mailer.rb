@@ -1,6 +1,4 @@
 class UserMailer < ApplicationMailer
-  default from: 'notifications@kittyconnection.com'
-
   def welcome_email
     @user = params[:user]
     @login_url = 'https://kitty-connection.onrender.com/login'
