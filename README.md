@@ -4,7 +4,7 @@ Kitty Connection is a web application that can be used to store information abou
 
 This repository contains both the frontend and backend code required to get the application running.
 
-This app will be improved upon to give it more functionality, and ideally eventually be used by shelters in my local area.
+This app will be improved upon to give it more functionality, and ideally, eventually it will have enough functionality to be used by shelters in my local area.
 
 ## Technologies Usede
 
