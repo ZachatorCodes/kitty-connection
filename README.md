@@ -1,24 +1,25 @@
-# README
+# Kitty Connection
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Kitty Connection is a web application that can be used to store information about adoptable cats, as well as apply to adopt those cats. Cats must be assigned a shelter on creation, and each user may only to apply each cat once. Cats and applications can only be created by registered users.
 
-Things you may want to cover:
+This repository contains both the frontend and backend code required to get the application running.
 
-* Ruby version
+This app will be improved upon to give it more functionality, and ideally eventually be used by shelters in my local area.
 
-* System dependencies
+## Technologies Usede
 
-* Configuration
+* Ruby
 
-* Database creation
+* Ruby on Rails
 
-* Database initialization
+* Action Mailer
 
-* How to run the test suite
+* JavaScript
 
-* Services (job queues, cache servers, search engines, etc.)
+* React
 
-* Deployment instructions
+* BCrypt
 
-* ...
+* React Router
+
+* Material UI
