@@ -52,6 +52,14 @@ function CatInfo() {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
+        const userApplications = user.applications;
+        if (userApplications.length !== 0) {
+          const updatedApplications = userApplications.filter(app => app.cat_id !== selectedCat.id)
+          setUser({
+            ...user,
+            applications: updatedApplications
+          })
+        }
         onDeleteCat(selectedCat);
         navigate("/");
       }
