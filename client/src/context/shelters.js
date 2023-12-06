@@ -18,7 +18,7 @@ function SheltersProvider({ children }) {
   }, []);
 
   return (
-    <SheltersContext.Provider value={{ shelters }}>
+    <SheltersContext.Provider value={{ shelters, setShelters }}>
       {children}
     </SheltersContext.Provider>
   );
