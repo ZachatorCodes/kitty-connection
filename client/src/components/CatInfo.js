@@ -19,6 +19,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../context/user";
 import { Button } from "@mui/material";
 import { CatsContext } from "../context/cats";
+import { SheltersContext } from "../context/shelters";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,6 +36,7 @@ function CatInfo() {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState(null);
   const { cats, onDeleteCat, setCats } = useContext(CatsContext);
+  const {shelters, setShelters} = useContext(SheltersContext)
   const navigate = useNavigate();
   const { id: catID } = useParams();
   const { loggedIn, user, setUser } = useContext(UserContext);
@@ -52,14 +54,25 @@ function CatInfo() {
       method: "DELETE",
     }).then((r) => {
       if (r.ok) {
-        const userApplications = user.applications;
-        if (userApplications.length !== 0) {
-          const updatedApplications = userApplications.filter(app => app.cat_id !== selectedCat.id)
+        if (user.applications.length !== 0) {
+          const updatedApplications = user.applications.filter(app => app.cat_id !== selectedCat.id)
           setUser({
             ...user,
             applications: updatedApplications
           })
         }
+        const updatedShelters = shelters.map(shelter => {
+          if (shelter.id === selectedCat.shelter.id) {
+            const updatedCats = shelter.cats.filter(cat => cat.id !== selectedCat.id)
+            return {
+              ...shelter,
+              cats: updatedCats
+            }
+          } else {
+            return shelter
+          }
+        })
+        setShelters(updatedShelters)
         onDeleteCat(selectedCat);
         navigate("/");
       }
