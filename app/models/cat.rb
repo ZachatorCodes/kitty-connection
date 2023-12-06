@@ -4,5 +4,5 @@ class Cat < ApplicationRecord
   has_many :users, through: :applications
 
   validates :name, :age, :sex, :shelter_id, presence: true
-  validates :age, numericality: {only_integer: true, less_than_or_equal_to: 99, greater_than_or_equal_to: 0}
+  validates :age, numericality: {only_integer: true, less_than_or_equal_to: 40, greater_than_or_equal_to: 0}
 end
