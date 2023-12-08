@@ -17,8 +17,6 @@ function Login() {
   });
 
   function handleChange(e) {
-    console.log(`NAME: ${e.target.name} | VALUE: ${e.target.value}`);
-
     const name = e.target.name;
     const value = e.target.value;
 
@@ -30,7 +28,6 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form Submitted!", "\n", userInfo);
     fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

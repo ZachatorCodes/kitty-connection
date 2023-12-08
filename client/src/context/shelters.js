@@ -12,7 +12,6 @@ function SheltersProvider({ children }) {
     fetch("/shelters")
       .then((r) => r.json())
       .then((shelters) => {
-        console.log(shelters);
         setShelters(shelters);
       });
   }, []);

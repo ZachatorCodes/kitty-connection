@@ -13,8 +13,6 @@ function ShelterInfo() {
     (shelter) => shelter.id === parseInt(shelterID)
   );
 
-  console.log(selectedShelter);
-
   if (selectedShelter) {
     return (
       <div className="shelter-page">

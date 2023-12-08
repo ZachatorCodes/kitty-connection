@@ -27,7 +27,6 @@ function CatUpdateForm({ cat, expanded, setExpanded }) {
     })
       .then((r) => r.json())
       .then((cat) => {
-        console.log(cat);
         onUpdateCat(cat);
         setExpanded(!expanded);
       });

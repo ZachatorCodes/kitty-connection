@@ -13,7 +13,6 @@ function BuildCat({ cat }) {
   const navigate = useNavigate();
 
   function redirectToCat() {
-    console.log("CAT ID: ", cat.id);
     navigate(`/cats/${cat.id}`);
   }
 

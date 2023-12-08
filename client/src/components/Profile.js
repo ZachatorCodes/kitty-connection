@@ -6,7 +6,6 @@ import Applications from "./Applications";
 
 function Profile() {
   const { loggedIn, user } = useContext(UserContext);
-  console.log(user)
 
   if (loggedIn) {
     return (

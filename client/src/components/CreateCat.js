@@ -54,7 +54,6 @@ function CreateCat() {
       .then((r) => r.json())
       .then((newCat) => {
         if (!newCat.errors) {
-          console.log(newCat);
           const updatedShelters = shelters.map((shelter) => {
             if (shelter.id === newCat.shelter.id) {
               return {
@@ -75,8 +74,6 @@ function CreateCat() {
   }
 
   function handleChange(e) {
-    console.log(`NAME: ${e.target.name} | VALUE: ${e.target.value}`);
-
     const name = e.target.name;
     const value = e.target.value;
 

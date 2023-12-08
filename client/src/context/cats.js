@@ -12,7 +12,6 @@ function CatsProvider({ children }) {
     fetch("/cats")
       .then((r) => r.json())
       .then((cats) => {
-        console.log(cats);
         setCats(cats);
       });
   }, []);

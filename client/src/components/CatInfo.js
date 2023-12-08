@@ -49,7 +49,6 @@ function CatInfo() {
   };
 
   function handleDelete() {
-    console.log(`${selectedCat.name} was clicked!`);
     fetch(`/cats/${selectedCat.id}`, {
       method: "DELETE",
     }).then((r) => {
@@ -78,8 +77,6 @@ function CatInfo() {
       }
     });
   }
-
-  console.log(selectedCat);
 
   function redirectToShelter() {
     navigate(`/shelters/${selectedCat.shelter.id}`);
@@ -121,7 +118,6 @@ function CatInfo() {
     })
       .then((r) => r.json())
       .then((application) => {
-        console.log(application);
         if (!application.errors) {
           setSuccess(true);
           setErrors(null);
