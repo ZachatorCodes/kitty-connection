@@ -24,7 +24,7 @@ import { SheltersContext } from "../context/shelters";
 import { CatsContext } from "../context/cats";
 
 function CreateCat() {
-  const { shelters } = useContext(SheltersContext);
+  const { shelters, setShelters } = useContext(SheltersContext);
   const { onAddCat } = useContext(CatsContext);
   const navigate = useNavigate();
   const { loggedIn } = useContext(UserContext);
@@ -52,13 +52,24 @@ function CreateCat() {
       body: JSON.stringify(catObj),
     })
       .then((r) => r.json())
-      .then((cat) => {
-        if (!cat.errors) {
-          console.log(cat);
-          onAddCat(cat);
+      .then((newCat) => {
+        if (!newCat.errors) {
+          console.log(newCat);
+          const updatedShelters = shelters.map((shelter) => {
+            if (shelter.id === newCat.shelter.id) {
+              return {
+                ...shelter,
+                cats: [...shelter.cats, newCat],
+              };
+            } else {
+              return shelter;
+            }
+          });
+          setShelters(updatedShelters);
+          onAddCat(newCat);
           navigate("/");
         } else {
-          setErrors(cat.errors);
+          setErrors(newCat.errors);
         }
       });
   }
