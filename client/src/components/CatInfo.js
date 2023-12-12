@@ -111,9 +111,7 @@ function CatInfo() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         cat_id: selectedCat.id,
-        user_id: user.id,
-        cat_name: selectedCat.name,
-        shelter_name: selectedCat.shelter.name
+        user_id: user.id
       }),
     })
       .then((r) => r.json())
