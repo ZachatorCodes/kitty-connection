@@ -110,7 +110,7 @@ puts "Seeding Applications 📋"
   Application.create!(
     {
       user_id: rand(1..3),
-      cat_id: rand(1..50)
+      cat_id: Faker::Number.unique.within(range: 1..50)
     }
   )
 end
