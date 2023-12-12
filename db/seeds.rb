@@ -5,10 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-require 'faker'
+require "faker"
 
-puts '_______________'
-puts 'Seeding Shelters 🏠'
+puts "_______________"
+puts "Seeding Shelters 🏠"
 
 Shelter.create!([
   {
@@ -53,9 +53,9 @@ Shelter.create!([
   }
 ])
 
-puts 'Done Seeding Shelters ✅'
-puts '_______________'
-puts 'Seeding Users 🧑'
+puts "Done Seeding Shelters ✅"
+puts "_______________"
+puts "Seeding Users 🧑"
 
 User.create!([
   {
@@ -87,9 +87,9 @@ User.create!([
   }
 ])
 
-puts 'Done Seeding Users ✅'
-puts '_______________'
-puts 'Seeding Cats 🐱'
+puts "Done Seeding Users ✅"
+puts "_______________"
+puts "Seeding Cats 🐱"
 
 50.times do
   Cat.create!(
@@ -102,20 +102,18 @@ puts 'Seeding Cats 🐱'
   )
 end
 
-puts 'Done Seeding Cats ✅'
-puts '_______________'
-puts 'Seeding Applications 📋'
+puts "Done Seeding Cats ✅"
+puts "_______________"
+puts "Seeding Applications 📋"
 
 10.times do
   Application.create!(
     {
       user_id: rand(1..3),
-      cat_id: Faker::Number.unique.within(range: 1..50),
-      cat_name: Faker::Name.name,
-      shelter_name: Faker::Address.city
+      cat_id: rand(1..50)
     }
   )
 end
 
-puts 'Done Seeding Applications ✅'
-puts '_______________'
+puts "Done Seeding Applications ✅"
+puts "_______________"
